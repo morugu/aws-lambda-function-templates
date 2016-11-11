@@ -75,7 +75,7 @@ exports.handler = function(event, context) {
   postData.attachments = [
     {
       "color": severity,
-      "text": message
+      "text": iconEmoji + message
     }
   ];
 
