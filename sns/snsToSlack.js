@@ -11,12 +11,12 @@ exports.handler = function(event, context) {
   var postData = {
     "channel": "#bot_api_message",
     "username": "AWS SNS via Lamda",
-    "text": "*" + event.Records[0].Sns.Subject + "*",
-    "icon_emoji": ":smiley:"
+    "text": "*" + event.Records[0].Sns.Subject + "*"
   };
 
   var message = event.Records[0].Sns.Message;
   var severity = "good";
+  var iconEmoji = ":white_check_mark:";
 
   var dangerMessages = [
     " but with errors",
@@ -55,6 +55,7 @@ exports.handler = function(event, context) {
   for(var dangerMessagesItem in dangerMessages) {
     if (message.indexOf(dangerMessages[dangerMessagesItem]) != -1) {
       severity = "danger";
+      iconEmoji = ":bangbang:"
       break;
     }
   }
@@ -64,11 +65,13 @@ exports.handler = function(event, context) {
     for(var warningMessagesItem in warningMessages) {
       if (message.indexOf(warningMessages[warningMessagesItem]) != -1) {
         severity = "warning";
+        iconEmoji = ":warning:"
         break;
       }
     }
   }
 
+  postData["icon_emoji"] = iconEmoji;
   postData.attachments = [
     {
       "color": severity,
