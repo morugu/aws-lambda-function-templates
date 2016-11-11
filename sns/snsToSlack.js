@@ -7,12 +7,12 @@ var util = require('util');
 exports.handler = function(event, context) {
   console.log(JSON.stringify(event, null, 2));
   console.log('From SNS:', event.Records[0].Sns.Message);
-  
+
   var postData = {
     "channel": "#bot_api_message",
     "username": "AWS SNS via Lamda",
     "text": "*" + event.Records[0].Sns.Subject + "*",
-    "icon_emoji": "ebot"
+    "icon_emoji": ":smiley:"
   };
 
   var message = event.Records[0].Sns.Message;
