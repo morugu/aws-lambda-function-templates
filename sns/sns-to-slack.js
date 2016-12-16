@@ -9,7 +9,7 @@ exports.handler = function(event, context) {
   console.log('From SNS:', event.Records[0].Sns.Message);
 
   var postData = {
-    "channel": "#bot_api_message",
+    "channel": "#channel_name",
     "username": "AWS SNS via Lamda",
     "text": "*" + event.Records[0].Sns.Subject + "*",
     "icon_emoji": ":slack:",
